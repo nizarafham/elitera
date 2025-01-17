@@ -11,12 +11,19 @@
 <section class="blog" id="blog">
     <div class="section__container blog__container">
         <h2 class="section__header">Explore Our Latest Courses</h2>
-        <div class="pb-3">
-            <form class="d-flex" action="{{ url('courses') }}" method="get">
-                <input class="form-control me-1" type="search" name="value" value="{{ Request::get('value') }}" placeholder="Masukkan kata kunci" aria-label="Search">
-                <button class="btn btn-secondary" type="submit">Cari</button>
+        <div class="pb-3 flex justify-center">
+            <form class="flex items-center space-x-2" action="{{ url('courses') }}" method="get">
+                <input class="form-control rounded-lg py-2 px-4 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    type="search" 
+                    name="value" 
+                    value="{{ Request::get('value') }}" 
+                    placeholder="Masukkan kata kunci" 
+                    aria-label="Search">
+                <button class="btn btn-primary py-2 px-4 rounded-lg text-white bg-blue-600 hover:bg-blue-700" 
+                        type="submit">Cari</button>
             </form>
         </div>
+
         <div class="blog__grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($courses as $course)
             <div class="blog__card bg-white shadow-md rounded-lg p-4">

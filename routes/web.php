@@ -27,37 +27,43 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function(){
 
     Route::get('/admin/dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/courses/pending', [AdminCourseController::class, 'pending'])->name('admin.courses.pending');
-    Route::post('/admin/courses/{course}/approve', [AdminCourseController::class, 'approve'])->name('admin.courses.approve');
-    Route::post('/admin/courses/{course}/reject', [AdminCourseController::class, 'reject'])->name('admin.courses.reject');
+    Route::post('/admin/courses/{id}/approve', [AdminCourseController::class, 'approveCourse'])->name('admin.courses.approve');
+    Route::post('/admin/courses/{id}/reject', [AdminCourseController::class, 'rejectCourse'])->name('admin.courses.reject');
+    Route::get('/admin/courses/json', [AdminCourseController::class, 'getPendingCourses'])->name('admin.courses.json');
+
 
 });
 
 //user routes
-Route::middleware(['auth', 'userMiddleware', 'cors'])->group(function(){
+Route::middleware(['auth', 'userMiddleware',])->group(function(){
 
-    Route::get('courses/{id}', [CourseController::class, 'show'])->name('courses.show');
     Route::post('/transaction/create/{id}', [TransactionController::class, 'createTransaction'])->name('transaction.create');
+    Route::post('/midtrans/notification', [TransactionController::class, 'handleNotification']);
+
+    //route percobaan
     Route::get('/coursetry', function () {
         return view('course/course');
     });
-
+    Route::get('/my-courses', [CourseController::class, 'myCourses'])->name('courses.my');
 });
 
 //mentor routes
 Route::middleware(['auth', 'mentorMiddleware'])->group(function () {
+
     Route::get('/mentor/dashboard', [MentorController::class, 'dashboard'])->name('mentor.dashboard');
     Route::get('/mentor/students/{class}', [MentorController::class, 'students'])->name('mentor.students');
     Route::resource('mycourses', MyCourseController::class)->names('mentor.mycourse');
+    
 });
 
 Route::get('/dashboard',[UserController::class, 'index'])->name('dashboard');
 Route::get('/courses',[CourseController::class, 'index'])->name('courses');
-
+Route::get('courses/{id}', [CourseController::class, 'show'])->name('courses.show');
 
 // root payment
-Route::get('/payment', function () {
-    return view('payment/payment');
-});
+// Route::get('/payment', function () {
+//     return view('payment/payment');
+// });
 
 // root course
 

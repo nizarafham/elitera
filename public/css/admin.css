@@ -6,7 +6,7 @@
 
 :root {
   --clr-primary: #7380ec;
-  --clr-danger: #ff7782;
+  --clr-danger: #1e3a8a;;
   --clr-success: #41f1b6;
   --clr-white: #fff;
   --clr-info-dark: #7d8da1;
@@ -462,10 +462,6 @@ Right Side
 }
 
 
-.right .recent_updates .update p{
-
-}
-
 /* see analytics */
 
 .right .sales-analytics{
@@ -533,6 +529,87 @@ Right Side
 
 }
 
+/* Table Container */
+.recent-orders {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Table Header */
+.recent-orders h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Table Styles */
+.recent-orders table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.recent-orders table thead {
+  background: #f5f5f5;
+}
+
+.recent-orders table th,
+.recent-orders table td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 14px;
+  border: 1px solid #ddd;
+}
+
+.recent-orders table th {
+  font-weight: bold;
+  color: #555;
+}
+
+.recent-orders table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.recent-orders table tr:hover {
+  background: #f1f1f1;
+}
+
+.recent-orders .text-center {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+/* Buttons */
+.recent-orders .btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.recent-orders .btn-approve {
+  background: #4CAF50;
+  color: #fff;
+}
+
+.recent-orders .btn-approve:hover {
+  background: #45A049;
+}
+
+.recent-orders .btn-reject {
+  background: #F44336;
+  color: #fff;
+}
+
+.recent-orders .btn-reject:hover {
+  background: #D32F2F;
+}
 
 
 

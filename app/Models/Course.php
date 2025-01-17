@@ -17,7 +17,7 @@ class Course extends Model
         'mentor_id',  // This will refer to the user_id of a mentor
         'level', 
         'status', 
-        'rejection_reason'
+        // 'rejection_reason'
     ];
 
     /**
@@ -27,6 +27,11 @@ class Course extends Model
     public function mentor()
     {
         return $this->belongsTo(User::class, 'mentor_id')->where('usertype', 'mentor');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_courses');
     }
 
     /**
@@ -61,4 +66,7 @@ class Course extends Model
     {
         return $this->hasMany(Material::class);
     }
+
+    
+
 }

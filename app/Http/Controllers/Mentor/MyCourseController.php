@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\User;
 use App\Models\Material;
 use App\Models\Video;
+use App\Models\PendingCourse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -24,60 +25,64 @@ class MyCourseController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'sub_description' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'level' => 'required|integer|between:1,3',
-            'is_free' => 'boolean',
-            'material_title' => 'required|string|max:255',
-            'material_description' => 'required|string',
-            'material_file' => 'required|mimes:pdf|max:10240',
-            'video_urls' => 'array', // Validasi bahwa ini adalah array
-            'video_urls.*' => 'required|url', // Validasi setiap item dalam array adalah URL
-            'video_titles' => 'array',
-            'video_titles.*' => 'required|string|max:255',
-        ]);
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string',
+        'sub_description' => 'required|string',
+        'price' => 'required|numeric|min:0',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'level' => 'required|integer|between:1,3',
+        'is_free' => 'boolean',
+        'material_title' => 'required|string|max:255',
+        'material_description' => 'required|string',
+        'material_file' => 'required|mimes:pdf|max:10240',
+        'video_urls' => 'array',
+        'video_urls.*' => 'required|url',
+        'video_titles' => 'array',
+        'video_titles.*' => 'required|string|max:255',
+    ]);
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $path = $image->store('courses', 'public');
-            $validated['image_url'] = Storage::url($path);
-        }
-    
-        // Menyimpan Course
-        $validated['mentor_id'] = auth()->id();
-    
-        $course = Course::create($validated);
-
-        // Proses penyimpanan file PDF untuk material
-        $filePath = $request->file('material_file')->store('materials', 'public');
-
-        // Menyimpan Material
-        $material = Material::create([
-            'course_id' => $course->id,
-            'title' => $validated['material_title'],
-            'description' => $validated['material_description'],
-            'file_path' => Storage::url($filePath),
-        ]);
-
-        // Menyimpan Video URLs
-        if (isset($validated['video_urls']) && isset($validated['video_titles'])) {
-            foreach ($validated['video_urls'] as $key => $videoUrl) {
-                Video::create([
-                    'material_id' => $material->id,
-                    'video_url' => $videoUrl,
-                    'title' => $validated['video_titles'][$key],
-                ]);
-            }
-        }
-
-        return redirect()->route('mentor.mycourse.index')
-            ->with('success', 'Course created successfully.');
+    // Proses penyimpanan file gambar
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $path = $image->store('courses', 'public');
+        $validated['image_url'] = Storage::url($path);
     }
+
+    // Proses penyimpanan file material
+    $filePath = $request->file('material_file')->store('materials', 'public');
+
+    // Gabungkan data video menjadi JSON
+    $videoData = [];
+    if (isset($validated['video_urls']) && isset($validated['video_titles'])) {
+        foreach ($validated['video_urls'] as $key => $videoUrl) {
+            $videoData[] = [
+                'url' => $videoUrl,
+                'title' => $validated['video_titles'][$key],
+            ];
+        }
+    }
+
+    // Simpan ke tabel pending_courses
+    PendingCourse::create([
+        'mentor_id' => auth()->id(),
+        'name' => $validated['name'],
+        'description' => $validated['description'],
+        'sub_description' => $validated['sub_description'],
+        'price' => $validated['price'],
+        'image_url' => $validated['image_url'] ?? null,
+        'level' => $validated['level'],
+        'is_free' => $validated['is_free'] ?? false,
+        'material_title' => $validated['material_title'],
+        'material_description' => $validated['material_description'],
+        'material_file_path' => Storage::url($filePath),
+        'video_data' => json_encode($videoData),
+    ]);
+
+    return redirect()->route('mentor.mycourse.index')
+        ->with('success', 'Course created successfully. Waiting for admin approval.');
+}
 
     public function edit(Course $mycourse)
     {

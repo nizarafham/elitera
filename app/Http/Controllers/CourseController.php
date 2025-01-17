@@ -46,9 +46,8 @@ class CourseController extends Controller
 
     public function show($id)
     {
-        // Retrieve the course by its ID along with the mentor
         $course = Course::with(['mentor' => function ($query) {
-            $query->where('usertype', 'mentor'); // Ensure mentor is valid
+            $query->where('usertype', 'mentor');
         }])->findOrFail($id);
 
         return view('showcourse', compact('course'));
@@ -62,6 +61,14 @@ class CourseController extends Controller
         }])->findOrFail($id);
 
         return view('courses.materials', compact('course'));
+    }
+
+    public function myCourses()
+    {
+        $user = auth()->user(); // Ambil user yang sedang login
+        $courses = $user->courses; // Ambil kursus yang telah dibeli oleh user
+
+        return view('course.my_courses', compact('courses'));
     }
 
 }
