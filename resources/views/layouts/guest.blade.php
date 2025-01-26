@@ -18,7 +18,8 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div>
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <h4 class="text-4xl font-semibold mb-4 text-5xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] 2xl:text-[20rem] font-bold text-blue-500 tracking-wide">E<span class="pr-1">-</span>Litera<span class="text-orange-500">.</span></h4>
+                    <!-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> -->
                 </a>
             </div>
 

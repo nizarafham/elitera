@@ -52,7 +52,8 @@
 .btn:hover {
   color: var(--secondary-color);
   background-color: transparent;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.1);
+  border: 2px solid#0c0a5d;
 }
 
 img {
@@ -79,7 +80,8 @@ body {
 }
 
 header {
-  background-color: var(--extra-light);
+  background-color: #f5f6f8;
+  /* background-color: var(--extra-light); */
 }
 
 .header__container {
@@ -189,6 +191,10 @@ header {
 
 .intro__image img {
   background-color: var(--white);
+}
+
+.section__header{
+  margin-bottom: 30px;
 }
 
 .intro__content :is(.section__subheader, .section__header) {

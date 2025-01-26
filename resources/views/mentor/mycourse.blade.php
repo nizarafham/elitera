@@ -1,3 +1,4 @@
+<script src="https://cdn.tailwindcss.com"></script>
 <x-app-layout>
 <div class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-6">
@@ -45,15 +46,16 @@
                 Rp. {{ number_format($course->price, 2, ',', '.') }}
             </p>
             <div class="mt-4 flex justify-between">
-                <a href="{{ route('mentor.mycourse.edit', $course) }}" 
-                   class="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-600">
+                <a href="{{ route('mentor.mycourse.edit', $course) }}">
+                    <button type="submit" class="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-green-600">
                     Edit
+                    </button> 
                 </a>
                 <form action="{{ route('mentor.mycourse.destroy', $course) }}" method="POST" 
                       onsubmit="return confirm('Are you sure you want to delete this course?')">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="bg-red-500 text-black px-4 py-2 rounded hover:bg-red-600">
+                    <button type="submit" class="bg-green-700 text-black px-4 py-2 rounded hover:bg-red-600">
                         Delete
                     </button>
                 </form>

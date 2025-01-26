@@ -22,6 +22,9 @@ class MentorMiddleware
         if (Auth::check() && Auth::user()->usertype === 'mentor') {
             return $next($request);
         }
+        if(Autch::check() && Auth::user()->status!=='approved'){
+            return redirect('/home')->with('error');
+        }
 
         // Jika pengguna bukan mentor, arahkan ke halaman dashboard dengan pesan error
         return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses ke halaman ini.');

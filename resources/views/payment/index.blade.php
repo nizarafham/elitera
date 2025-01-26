@@ -1,3 +1,4 @@
+<script src="https://cdn.tailwindcss.com"></script>
 <x-app-layout>
 <div class="container mx-auto px-4 py-8 flex justify-center items-center" style="height: 100vh;">
     <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">

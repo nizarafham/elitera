@@ -11,7 +11,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center justify-between w-full">
+                <div class="shrink-0 flex items-center justify-between w-full ">
                 <a href="{{ Auth::user()->usertype == 'admin' ? route('admin.dashboard') : (Auth::user()->usertype == 'mentor' ? route('dashboard') : route('dashboard')) }}">
                     <div class="flex items-center p-4">
                         <div class="text-3xl font-bold text-blue-900 tracking-wide">
@@ -50,7 +50,7 @@
                 </div>
 
                 <!-- Settings Dropdown (Kanan) -->
-                <div class="hidden sm:flex sm:items-center ml-auto absolute absolute left-2/3 translate-x-3/4 flex space-x-8">
+                <div class="hidden sm:flex sm:items-center ml-auto absolute right-0  translate-x-0 flex space-x-8">
                     <x-dropdown align="right" width="60">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition duration-150">
@@ -64,7 +64,7 @@
                         </x-slot>
 
                 <x-slot name="content" >
-                    <x-dropdown-link :href="route('profile.edit')">
+                    <x-dropdown-link :href="route('profile.index')">
                         {{ __('Profile') }}
                     </x-dropdown-link>
 
@@ -73,7 +73,7 @@
                         @csrf
                         <x-dropdown-link :href="route('logout')"
                             onclick="event.preventDefault(); this.closest('form').submit();" class="whitespace-nowrap">
-                            {{ __('Log Out') }}
+                            {{ __('Logout') }}
                         </x-dropdown-link>
                     </form>
                 </x-slot>
@@ -112,7 +112,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="route('profile.index')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
@@ -123,7 +123,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();" class="whitespace-nowrap">
-                        {{ __('Log Out') }}
+                        {{ __('Logout') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

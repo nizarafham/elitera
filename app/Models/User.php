@@ -47,11 +47,17 @@ class User extends Authenticatable
     }
     public function courses()
     {
-        return $this->hasMany(Course::class, 'mentor_id');
+        return $this->belongsToMany(Course::class, 'user_courses');
     }
+
 
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function videoProgress()
+    {
+        return $this->hasMany(VideoProgress::class);
     }
 }

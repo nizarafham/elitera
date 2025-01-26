@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 @vite(['resources/css/app.css', 'resources/js/app.js'])  -->
 
-    <div class="container mt-5">
+<div class="container mt-5">
     <div class="card mb-4 bg-transparent" style="border: none;">
         <div class="card-header bg-transparent text-black" style="border: none;">
             <h2 class="mb-0">Profile</h2>
@@ -14,7 +14,7 @@
         <div class="card-body bg-transparant">
             <div class="d-flex align-items-start bg-transparent">
                 <img
-                    src="{{ $user->profile_image ?? asset('images/profile.jfif') }}"
+                    src="{{ $user->profile_image ?? asset('images/rawr.jpg') }}"
                     alt="Profile Image"
                     class="rounded-circle me-3 mb-3"
                     style="width: 150px; height: 150px; object-fit: cover;">

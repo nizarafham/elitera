@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    @section('title', 'Home: ')
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
     <!-- <link rel="stylesheet" href="/public/css/dasboard.css"> -->
 
 </head>
 <body>
-<header id="home" class="bg-slate-100">
+<header id="home" class="bg-white">
         <div class="section__container header__container">
         <div class="header__content">
             <h2>Hallo, Welcome To</h2>
@@ -29,9 +29,9 @@
         </div>
 </header>
 
-  <section class="section__container intro__container bg-white" id="intro">
+  <section class="section__container intro__container bg-gray-10" id="intro">
     <div class="intro__image">
-      <img src="{{asset('images/rawr.jpg')}}" alt="intro" />
+      <img src="{{asset('images/icon.png')}}" alt="intro" />
     </div>
     <div class="intro__content">
       <p class="section__subheader">INTRO</p>

@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
@@ -14,7 +15,8 @@
         <aside>
             <div class="top">
                 <div class="logo">
-                    <h2>E-<span class="danger">Litera</span></h2>
+                    <!-- <h2>E-<span class="danger">Litera</span></h2> -->
+                    <h2>E<span class="pr-1">-</span>Litera<span class="text-orange-500">.</span></h2>
                 </div>
                 <div class="close" id="close_btn">
                     <span class="material-symbols-sharp">close</span>
@@ -25,13 +27,17 @@
                     <span class="material-symbols-sharp">grid_view</span>
                     <h3>Dashbord</h3>
                 </a>
-                <a href="#" data-target="mentor-apply">
+                <!-- <a href="#" data-target="mentor-apply">
                     <span class="material-symbols-sharp">person_outline</span>
                     <h3>Mentor Apply</h3>
-                </a>
+                </a> -->
                 <a href="#" data-target="course-apply">
                     <span class="material-symbols-sharp">receipt_long</span>
                     <h3>Course Apply</h3>
+                </a>
+                <a href="#" data-target="course-edit-apply">
+                    <span class="material-symbols-sharp">receipt_long</span>
+                    <h3>Edit Course Apply</h3>
                 </a>
                 <a href="#" data-target="reports">
                     <span class="material-symbols-sharp">report_gmailerrorred</span>

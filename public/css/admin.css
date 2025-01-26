@@ -127,9 +127,11 @@ b{
 /* aside */
  aside{
   height: 100vh;
+  border-radius: 50px;
  }
  aside .top{
-  background: var(--clr-white);
+  /* background: var(--clr-white); */
+  background-color: #f6f6f9;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -138,6 +140,7 @@ b{
 
  aside .logo{
    display: flex;
+   background-color: #f6f6f9;
    gap: 1rem;
  }
  aside .logo img{

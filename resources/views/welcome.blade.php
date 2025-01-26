@@ -84,32 +84,31 @@
         </style>  
     @endif  
 </head>  
-<body class="font-sans antialiased bg-gray-50 dark:bg-black text-black dark:text-white">  
+<body class="font-sans antialiased bg-white dark:bg-black text-black dark:text-white">  
     <div class="relative min-h-screen flex flex-col items-center">  
-        <header class="flex justify-between items-center w-full max-w-7xl px-6 py-4">  
+        <header class="flex justify-between bg-white items-center w-full max-w-7xl px-6 py-4">  
             <div class="text-3xl font-extrabold text-black dark:text-white">  
-                E-Litera<span class="text-orange-500">.</span>  
+            <h4 class="text-4xl font-bold mb-4 text-3xl font-bold text-blue-500 tracking-wide">E<span class="pr-1">-</span>Litera<span class="text-orange-500">.</span></h4>  
+            </div>
+            <div class= "space-x-4">
+                <!-- <a href="{{ route('login') }}" class="text-blue-900 hover:text-orange-500 text-lg font-semibold">Home</a> -->
+                <a href="#" class="text-blue-900 hover:text-orange-500 text-lg font-semibold">Home</a>
+                <a href="{{ route('login') }}" class="text-blue-900 hover:text-orange-500 text-lg font-semibold">Course</a> 
             </div>  
-            <nav class="flex space-x-4">  
-                <a href="{{ route('login') }}" class="text-black dark:text-white hover:text-orange-500">Log in</a>  
-                <a href="{{ route('register') }}" class="text-black dark:text-white hover:text-orange-500">Register</a>  
-            </nav>  
+ 
+            <nav class="flex space-x-4">
+                <a href="{{ route('login') }}" class="text-black-900 hover:text-orange-500 text-lg font-semibold">Log in</a>  
+                <a href="{{ route('register') }}" class="text-black-900 hover:text-orange-500 text-lg font-semibold">Register</a>  
+            </nav>   
         </header>  
-  
-        <main class="flex flex-col items-center text-center px-6 mt-20">  
-            <h1 class="text-5xl font-bold mb-4">Hallo, Welcome To E-Litera.</h1>  
-            <h2 class="text-xl mb-4">Mastering Skills Without Having to go to College</h2>  
-            <p class="mb-8">Learn directly from the experts through practical modules and tutorials. Realize your dreams without having to wait for graduation!</p>  
-        </main> 
-        
-        <div class="absolute right-0 bottom-0">  
-            <img src="https://example.com/rocket-image.png" alt="Rocket" class="w-40 h-40" />  
-        </div>  
+        @include('layouts.dashboard')  
+        @include('layouts.topcourse')  
     </div>  
+    @include('layouts.footer')
 </body>  
 </html>  
   
-
+<!-- batas -->
 <!-- 
                     <main class="mt-6">
                         <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">

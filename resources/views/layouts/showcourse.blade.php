@@ -1,3 +1,4 @@
+@section('title', 'Course: ')
 <script src="https://cdn.tailwindcss.com"></script>
 <div class="container mx-auto px-4 py-8" style="margin-top:50px">
     <div class="flex items-center">
@@ -21,12 +22,20 @@
 
             <!-- Join Course (buy) -->
             <div class="mt-6">
+            @if (auth()->user()->courses->contains($course->id))
+                <p class="text-green-600 mb-8">You already own this course?</p>
+                <a href="{{ route('courses.watch', $course->id) }}" class="watch-btn mt-10 px-6 py-3 text-white bg-blue-500 hover:bg-[#ff9442] font-bold rounded-lg">
+                    Watch Course
+                </a>
+            @else
                 <form action="{{ route('transaction.create', $course->id) }}" method="POST">
                     @csrf
-                    <button class="watch-btn mt-4 px-6 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg">
+                    <button class="watch-btn mt-10 px-6 py-2 text-white bg-blue-500 hover:bg-orange-600 font-bold rounded-lg">
                         Join
                     </button>
                 </form>
+            @endif
+
             </div>
 
             <!-- Back to Course List -->

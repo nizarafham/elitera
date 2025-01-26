@@ -31,7 +31,9 @@ class Course extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_courses');
+        return $this->belongsToMany(User::class, 'user_courses') // ganti 'user_courses' dengan nama tabel pivot yang sesuai
+            ->withPivot('status') // menambahkan kolom status pada pivot
+            ->withTimestamps();
     }
 
     /**
@@ -67,6 +69,23 @@ class Course extends Model
         return $this->hasMany(Material::class);
     }
 
-    
+    // App\Models\Course.php
 
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
+
+    public function isCompletedByUser($user)
+    {
+        return $this->users()
+                    ->where('user_courses.user_id', $user->id)
+                    ->where('user_courses.status', 'completed')
+                    ->exists();
+    }
+
+    public function videoProgress()
+    {
+        return $this->hasManyThrough(VideoProgress::class, Video::class);
+    }
 }

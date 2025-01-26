@@ -1,3 +1,4 @@
+
 <x-app-layout>
     <div class="container mx-auto">
         <h1 class="text-2xl font-bold mb-6">My Courses</h1>
@@ -12,7 +13,7 @@
                         <h3 class="text-xl font-bold mt-4">{{ $course->name }}</h3>
                         <p class="text-gray-600 mt-2">{{ $course->description }}</p>
                         <p class="text-lg font-semibold text-green-600 mt-2">Rp. {{ number_format($course->price, 2, ',', '.') }}</p>
-                        <p class="text-gray-500 mt-1">Mentor: {{ $course->mentor->name }}</p>
+                        <p class="text-gray-500 mt-1">Mentor: {{ $course->mentor ? $course->mentor->name : 'No mentor assigned' }}</p>
                     </div>
                 @endforeach
             </div>

@@ -1,3 +1,4 @@
+<script src="https://cdn.tailwindcss.com"></script>
 <x-app-layout>
 <div class="py-8 px-4 md:px-12 mx-auto max-w-7xl">
     <form action="{{ route('mentor.mycourse.store') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
@@ -41,7 +42,7 @@
                 <div>
                     <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Price</label>
                     <div class="relative">
-                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                        <span class="absolute left-3 top-2 text-gray-500">Rp</span>
                         <input type="number" name="price" id="price" value="{{ old('price') }}" min="0" step="0.01"
                             class="w-full pl-8 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
@@ -126,11 +127,11 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="material_file" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                     <span>Upload a file</span>
-                                    <input id="material_file" name="material_file" type="file" class="sr-only" accept=".pdf">
+                                    <input id="material_file" name="material_file" type="file" class="sr-only" accept="application/pdf">
                                 </label>
                                 <p class="pl-1">or drag and drop</p>
                             </div>
-                            <p class="text-xs text-gray-500">PDF up to 10MB</p>
+                            <p class="text-xs text-gray-500">PDF, Max 10MB</p>
                         </div>
                     </div>
                     @error('material_file')
@@ -140,68 +141,97 @@
             </div>
         </div>
 
-        <!-- Videos Card -->
+        <!-- Quiz Section -->
         <div class="bg-white rounded-lg shadow-md p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold text-gray-900">Course Videos</h2>
-                <button type="button" onclick="addVideoField()" 
-                    class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Add Video
-                </button>
-            </div>
-            
-            <div id="video-container" class="space-y-6">
-                <div class="video-entry p-4 border border-gray-200 rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Video Title</label>
-                            <input type="text" name="video_titles[]" 
-                                class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Video URL</label>
-                            <input type="url" name="video_urls[]" 
-                                class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-end">
-            <button type="submit" class="px-6 py-3 bg-indigo-600 text-black font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Create Course
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold text-gray-900">Course Videos</h2>
+            <button type="button" onclick="addVideoField()" 
+                class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Add Video
             </button>
         </div>
+        
+        <div id="video-container" class="space-y-6">
+            <div class="video-entry p-4 border border-gray-200 rounded-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Video Title</label>
+                        <input type="text" name="video_titles[]" 
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Video URL</label>
+                        <input type="url" name="video_urls[]" 
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                </div>
+                <div id="quiz-container-0" class="mt-4 space-y-4">
+                    <h3 class="text-lg font-bold text-gray-700">Quizzes for this Video</h3>
+                    <div class="quiz-entry p-3 border rounded-md">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Question</label>
+                        <input type="text" name="quiz_questions[0][]" 
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+
+                        <label class="block text-sm font-medium text-gray-700 mt-2 mb-1">Options</label>
+                        <textarea name="quiz_options[0][]" rows="3"
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+
+                        <label class="block text-sm font-medium text-gray-700 mt-2 mb-1">Correct Answer</label>
+                        <input type="text" name="quiz_answers[0][]" 
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
 
-        
+        <div class="flex justify-end">
+            <button type="submit" id="submit-btn" class="btn btn-primary mt-6">Save</button>
+        </div>
     </form>
 </div>
 
 <script>
-function addVideoField() {
-    const container = document.getElementById('video-container');
-    const videoEntry = document.createElement('div');
-    videoEntry.className = 'video-entry p-4 border border-gray-200 rounded-lg';
-    videoEntry.innerHTML = `
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Video Title</label>
-                <input type="text" name="video_titles[]" 
-                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+    function addVideoField() {
+        const container = document.getElementById('video-container');
+        const videoIndex = container.children.length; // Hitung jumlah video saat ini
+        const videoEntry = document.createElement('div');
+        videoEntry.className = 'video-entry p-4 border border-gray-200 rounded-lg mb-4';
+        videoEntry.innerHTML = `
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Video Title</label>
+                    <input type="text" name="video_titles[]" 
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Video URL</label>
+                    <input type="url" name="video_urls[]" 
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
             </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Video URL</label>
-                <input type="url" name="video_urls[]" 
-                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+            <div id="quiz-container-${videoIndex}" class="mt-4 space-y-4">
+                <h3 class="text-lg font-bold text-gray-700">Quizzes for this Video</h3>
+                <div class="quiz-entry p-3 border rounded-md">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Question</label>
+                    <input type="text" name="quiz_questions[${videoIndex}][]" 
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+
+                    <label class="block text-sm font-medium text-gray-700 mt-2 mb-1">Options</label>
+                    <textarea name="quiz_options[${videoIndex}][]" rows="3"
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+
+                    <label class="block text-sm font-medium text-gray-700 mt-2 mb-1">Correct Answer</label>
+                    <input type="text" name="quiz_answers[${videoIndex}][]" 
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
             </div>
-        </div>
-        <button type="button" onclick="this.parentElement.remove()" 
-            class="mt-2 text-sm text-red-600 hover:text-red-800">
-            Remove Video
-        </button>
-    `;
-    container.appendChild(videoEntry);
-}
-</script>
+            <button type="button" onclick="this.parentElement.remove()" 
+                class="mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+                Remove Video
+            </button>
+        `;
+        container.appendChild(videoEntry);
+    }
 </script>
 </x-app-layout>

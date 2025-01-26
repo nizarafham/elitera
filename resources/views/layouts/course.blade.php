@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course</title>
+    @section('title', 'Course: ')
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
 </head>
@@ -19,7 +19,7 @@
                     value="{{ Request::get('value') }}" 
                     placeholder="Masukkan kata kunci" 
                     aria-label="Search">
-                <button class="btn btn-primary py-2 px-4 rounded-lg text-white bg-blue-600 hover:bg-blue-700" 
+                <button class="btn btn-primary py-2 px-4 rounded-lg font-bold" 
                         type="submit">Cari</button>
             </form>
         </div>
@@ -32,8 +32,8 @@
                 <p class="text-gray-600 mt-2">{{ $course->description }}</p>
                 <p class="text-lg font-semibold text-green-600 mt-2">Rp. {{ number_format($course->price, 2, ',', '.') }}</p>
                 <p class="text-gray-500 mt-1">Mentor: {{ $course->mentor->name }}</p>
-                <button class="bg-[#ff9442] text-white py-2 px-4 rounded mt-4">
-                    <a href="{{ route('courses.show', $course->id) }}">JOIN</a>
+                <button class="bg-blue-500 hover:bg-[#ff9442] font-bold text-white py-2 px-4 rounded mt-4">
+                    <a href="{{ route('courses.show', $course->id) }}">VIEW</a>
                 </button>
             </div>
             @endforeach
