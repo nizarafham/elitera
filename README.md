@@ -1,3 +1,17 @@
+<h1>E-Litera</h1>
+<p>Tugas Besar Pemrograman Web<p>
+
+E-Litera adalah platform kursus online yang didedikasikan untuk siapa saja yang ingin belajar dengan sungguh-sungguh, tanpa terkendala biaya. Kami percaya bahwa pendidikan adalah hak semua orang, dan semangat untuk belajar tidak boleh terhalang oleh batasan finansial. disini anda bisa menjelajahi berbagai kursus yang dirancang untuk mengembangkan potensi Anda. 
+
+Temukan ilmu baru, raih mimpi Anda, dan jadilah bagian dari komunitas pembelajar yang terus bertumbuh. Karena bersama E-Litera, belajar tidak memiliki batasan.<br>
+
+<b>Anggota :<br></b> 
+Nizar Afham Aflaha <br>
+Bambang Istijab <br>
+Muhammad Zaky Tabrani <br>
+Kumara Daffa Prasetya <br>
+Athirah Rashida Naima <br>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
